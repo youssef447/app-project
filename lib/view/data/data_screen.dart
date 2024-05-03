@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:slideable/slideable.dart';
 import '../../Model/models/model.dart';
-import '../widgets/indicator_loading.dart';
 
 class DataScreen extends StatelessWidget {
   const DataScreen({super.key});
@@ -17,10 +16,7 @@ class DataScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: locators.get<CrudRepo>().read(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child:  IndicatorBlurLoading());
-          }
-        else  if (snapshot.hasError) {
+          if (snapshot.hasError) {
             return Center(
               child: Text(
                 'Err getting data',
